@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 const Todo = () => {
 
+    let nextId = 0;
     const [text, setText] = useState("");
     const [artists, setArtists] = useState([]);
 
@@ -13,10 +14,13 @@ const Todo = () => {
 
       const addName = () => {
         return(
-            artists.push(text)
-
-        )
-      }
+            setArtists([
+                ...artists,
+                { id: nextId++, name: text }
+              ])
+    )
+           
+    }
         
         
      
