@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import Todo from './Todo'
 
 function App() {
 
 
   return (
     <>
-    <h1>Hello</h1>
+    <div>
+    <h1>Todo</h1>
+    <Todo />
+    </div>
+    
     </>
   )
 }
