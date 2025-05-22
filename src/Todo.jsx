@@ -17,7 +17,10 @@ const Todo = () => {
             setArtists([
                 ...artists,
                 { id: nextId++, name: text }
-              ])
+              ]),
+              setText("")
+
+             
     )
            
     }
