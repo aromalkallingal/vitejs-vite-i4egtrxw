@@ -6,7 +6,11 @@ const Todo = () => {
     const [text, setText] = useState("");
     const [artists, setArtists] = useState([]);
 
- 
+
+
+    const deleteName = (idToDelete) => {
+      setArtists(artists.filter(artist => artist.id == idToDelete));
+    };
 
     const addTask = (event) => {
         setText(event.target.value);
@@ -35,7 +39,8 @@ const Todo = () => {
 
         <ul>
         {artists.map(artist => (
-          <li >{artist.name}</li>
+          <li key={artist.id}>{artist.name}<button onClick={() => deleteName(artist.id)}>
+            delete button</button></li>
         ))}
       </ul>
         
@@ -43,6 +48,9 @@ const Todo = () => {
   )
 }
 
+
+
+export default Todo
 
 
 export default Todo
