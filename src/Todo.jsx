@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 
 const Todo = () => {
 
-    let nextId = 0;
+    const [nextId, setNextId] = useState(0)
     const [text, setText] = useState("");
     const [artists, setArtists] = useState([]);
 
 
 
     const deleteName = (idToDelete) => {
-      setArtists(artists.filter(artist => artist.id == idToDelete));
+      console.log(idToDelete.id)
+      console.log(idToDelete.name)
     };
 
     const addTask = (event) => {
@@ -18,9 +19,10 @@ const Todo = () => {
 
       const addName = () => {
         return(
+          setNextId(nextId + 1),
             setArtists([
                 ...artists,
-                { id: nextId++, name: text }
+                { id: nextId, name: text }
               ]),
               setText("")
 
@@ -38,9 +40,9 @@ const Todo = () => {
         <button onClick={addName}>Add</button>
 
         <ul>
-        {artists.map(artist => (
-          <li key={artist.id}>{artist.name}<button onClick={() => deleteName(artist.id)}>
-            delete button</button></li>
+        {artists.map((artist, index) => (
+          <li key={index}>{artist.name}<button onClick={() => deleteName(artist)}>
+            X</button ></li>
         ))}
       </ul>
         
