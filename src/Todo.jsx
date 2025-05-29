@@ -9,8 +9,8 @@ const Todo = () => {
 
 
     const deleteName = (idToDelete) => {
-      console.log(idToDelete.id)
-      console.log(idToDelete.name)
+    const  newArray = artists.filter((artist) => artist != idToDelete)
+    setArtists(newArray)
     };
 
     const addTask = (event) => {
