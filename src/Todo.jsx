@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Todo.css';
 
 const Todo = () => {
 
@@ -9,7 +10,7 @@ const Todo = () => {
 
 
     const deleteName = (idToDelete) => {
-    const  newArray = artists.filter((artist) => artist != idToDelete)
+    const  newArray = artists.filter((artist) => artist.id != idToDelete)
     setArtists(newArray)
     };
 
@@ -22,34 +23,30 @@ const Todo = () => {
       };
 
       const addName = () => {
-        return(
-          setNextId(nextId + 1),
-            setArtists([
-                ...artists,
-                { id: nextId, name: text }
-              ]),
-              setText("")
-
-             
-    )
-           
-    }
+        if (text.trim() === "") return;
+        setArtists([...artists, { id: nextId, name: text }]);
+        setNextId(nextId + 1);
+        setText("");
+      };
+      
         
         
      
 
   return (
     <div>
+      <div className='input'>
         <input type="text" onChange={addTask} value={text}/>
         <button onClick={addName}>Add</button>
-
-        <ul>
+        </div>
+        <ul className='list'>
         {artists.map((artist, index) => (
           <li key={index}><input type="checkbox" id="scales" name="scales" />
            {artist.name}
-            <button onClick={updateTask}>Edit</button>
-            <button onClick={() => deleteName(artist)}>
-            X</button >
+            <button onClick={updateTask}>🖊️</button>
+            <button onClick={() => deleteName(artist.id)}>
+
+            ❌</button >
           </li>
         ))}
       </ul>
