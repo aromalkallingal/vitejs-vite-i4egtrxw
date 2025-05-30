@@ -13,6 +13,10 @@ const Todo = () => {
     setArtists(newArray)
     };
 
+    const updateTask = () => {
+      console.log("testing")
+    }
+
     const addTask = (event) => {
         setText(event.target.value);
       };
@@ -41,8 +45,12 @@ const Todo = () => {
 
         <ul>
         {artists.map((artist, index) => (
-          <li key={index}>{artist.name}<button onClick={() => deleteName(artist)}>
-            X</button ></li>
+          <li key={index}><input type="checkbox" id="scales" name="scales" />
+           {artist.name}
+            <button onClick={updateTask}>Edit</button>
+            <button onClick={() => deleteName(artist)}>
+            X</button >
+          </li>
         ))}
       </ul>
         
