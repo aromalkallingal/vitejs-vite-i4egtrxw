@@ -1,60 +1,53 @@
 import React, { useState } from 'react'
-import './Todo.css';
 
 const Todo = () => {
 
-    const [nextId, setNextId] = useState(0)
+   
     const [text, setText] = useState("");
-    const [artists, setArtists] = useState([]);
+    const [artists, setArtists] = useState([])
+    const [id, setId] = useState(0)
 
 
 
-    const deleteName = (idToDelete) => {
-    const  newArray = artists.filter((artist) => artist.id != idToDelete)
-    setArtists(newArray)
+    const deleteName = (deletedArtist) => {
+      const newArtists = artists.filter((artist) => artist !== deletedArtist)
+      setArtists(newArtists)
     };
-
-    const updateTask = () => {
-      console.log("testing")
-    }
 
     const addTask = (event) => {
         setText(event.target.value);
       };
 
       const addName = () => {
-        if (text.trim() === "") return;
-        setArtists([...artists, { id: nextId, name: text }]);
-        setNextId(nextId + 1);
-        setText("");
-      };
-      
+        return(
+          setId(id + 1),
+          setArtists([
+                ...artists,
+                { id: id, name: text }
+              ]),
+              setText("")        
+    )
+           
+    }
         
         
      
 
   return (
     <div>
-      <div className='input'>
         <input type="text" onChange={addTask} value={text}/>
         <button onClick={addName}>Add</button>
-        </div>
-        <ul className='list'>
-        {artists.map((artist, index) => (
-          <li key={index}><input type="checkbox" id="scales" name="scales" />
-           {artist.name}
-            <button onClick={updateTask}>🖊️</button>
-            <button onClick={() => deleteName(artist.id)}>
 
-            ❌</button >
-          </li>
+        <ul>
+        {artists.map((artist, index) => (
+          <li key={index}><input type="checkbox" />{artist.name}<button onClick={() => deleteName(artist)}>
+            delete button</button></li>
         ))}
       </ul>
         
     </div>
   )
 }
-
 
 
 
