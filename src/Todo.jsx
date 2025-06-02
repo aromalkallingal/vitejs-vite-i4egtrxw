@@ -6,6 +6,8 @@ const Todo = () => {
     const [text, setText] = useState("");
     const [artists, setArtists] = useState([])
     const [id, setId] = useState(0)
+    const [editingId, setEditingId] = useState(null);
+    const [editText, setEditText] = useState("");
 
 
 
@@ -14,6 +16,21 @@ const Todo = () => {
       setArtists(newArtists)
     };
 
+
+    const startEdit = (artist) => {
+      setEditingId(artist.id);
+      setEditText(artist.name);
+    };
+  
+    const saveEdit = (id) => {
+      const updatedArtists = artists.map((artist) =>
+        artist.id === id ? { ...artist, name: editText } : artist
+      );
+      setArtists(updatedArtists);
+      setEditingId(null);
+      setEditText("");
+    };
+    
     const editTask = (Editedartist) => {
         console.log("edited", Editedartist.name);
     
