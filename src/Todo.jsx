@@ -58,7 +58,7 @@ const Todo = () => {
 
   return (
     <div>
-        <input type="text" onChange={addTask} value={text}/>
+        <input type="text" onChange={addTask} value={text} placeholder='add task'/>
         <button onClick={addName}>Add</button>
 
         <ul>
