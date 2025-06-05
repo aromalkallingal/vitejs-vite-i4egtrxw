@@ -63,11 +63,12 @@ const Todo = () => {
 
         <ul>
         {artists.map((artist, index) => (
-          <li key={index}>
+          <li>
             <input type="checkbox" />
             {artist.name}
             <button onClick={() => deleteName(artist)}>delete button</button>
-            <button onClick={() => editTask(artist)}>edit</button></li>
+            <button onClick={() => editTask(artist)}>edit button</button>
+            </li>
         ))}
       </ul>
         
