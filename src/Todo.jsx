@@ -6,8 +6,8 @@ const Todo = () => {
     const [text, setText] = useState("");
     const [artists, setArtists] = useState([])
     const [id, setId] = useState(0)
-    const [editingId, setEditingId] = useState(null);
-    const [editText, setEditText] = useState("");
+    const [editingId, setEditingId] = useState(0);
+  
 
 
 
@@ -17,24 +17,13 @@ const Todo = () => {
     };
 
 
-    const startEdit = (artist) => {
-      setEditingId(artist.id);
-      setEditText(artist.name);
-    };
-  
-    const saveEdit = (id) => {
-      const updatedArtists = artists.map((artist) =>
-        artist.id === id ? { ...artist, name: editText } : artist
-      );
-      setArtists(updatedArtists);
-      setEditingId(null);
-      setEditText("");
-    };
-    
-    const editTask = (Editedartist) => {
-        console.log("edited", Editedartist.name);
-    
 
+    
+    const editTask = (id) => {
+       const editTodo = artists.find((artist) => artist.id == id);
+       console.log(editTodo)
+       setText(editTodo.name)
+       setEditingId(editTodo.id)
     }
 
     const addTask = (event) => {
@@ -42,14 +31,14 @@ const Todo = () => {
       };
 
       const addName = () => {
-        return(
+        if (text != ''){
           setId(id + 1),
           setArtists([
                 ...artists,
                 { id: id, name: text }
               ]),
               setText("")        
-    )
+            }
            
     }
         
@@ -59,7 +48,7 @@ const Todo = () => {
   return (
     <div>
         <input type="text" onChange={addTask} value={text} placeholder='add task'/>
-        <button onClick={addName}>Add</button>
+        <button onClick={addName}>{editingId ? "edit" : 'add'}</button>
 
         <ul>
         {artists.map((artist, index) => (
@@ -67,7 +56,7 @@ const Todo = () => {
             <input type="checkbox" />
             {artist.name}
             <button onClick={() => deleteName(artist)}>delete button</button>
-            <button onClick={() => editTask(artist)}>edit button</button>
+            <button onClick={() => editTask(index)}>edit button</button>
             </li>
         ))}
       </ul>
