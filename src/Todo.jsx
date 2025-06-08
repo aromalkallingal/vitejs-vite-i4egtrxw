@@ -60,7 +60,7 @@ const Todo = () => {
           <li key={artist.id}>
             <input type="checkbox" />
             {artist.name}
-            <button onClick={() => deleteName(artist)}>delete button</button>
+            <button onClick={() => deleteName(artist)}>x</button>
             <button onClick={() => editTask(index)}>edit button</button>
             </li>
         ))}
