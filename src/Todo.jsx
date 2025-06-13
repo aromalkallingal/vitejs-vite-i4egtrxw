@@ -23,7 +23,7 @@ const Todo = () => {
     const editTask = (id) => {
        const editTodo = artists.find((artist) => artist.id == id);
        console.log(editTodo)
-       setText(editTodo.name)
+       setText(editTodo.name);
        setEditingId(editTodo.id)
     }
 
@@ -57,12 +57,12 @@ const Todo = () => {
         <button onClick={addName}>{editingId !== null ? 'Edit' : 'Add'}</button>
 
         <ul>
-        {artists.map((artist, index) => (
+        {artists.map((artist) => (
           <li key={artist.id}>
             <input type="checkbox" />
             {artist.name}
             <button onClick={() => deleteName(artist)}>x</button>
-            <button onClick={() => editTask(index)}>edit button</button>
+            <button onClick={() => editTask(artist.id)}>edit button</button>
             </li>
         ))}
       </ul>
